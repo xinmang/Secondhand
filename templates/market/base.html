@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <link href="/static/market/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/market/js/bootstrap.min.js"></script>
+</head>
+<style>
+.avatar {
+    width: 40px;
+    height: 40px;
+}
+</style>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+    <ul class="nav navbar-nav">
+                <li><a href="/">首页</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="/push_goods/">卖物品</a></li>
+    				<li>
+    					{% if request.session.nick %}
+    					<a href="/me/">
+                            <img src="{{ request.session.avatar }}" style="width: 30px;height: 30px" />
+    						<span>{{ request.session.nick }}</span>
+                        </a>
+<li><a href="/me/log/">0条未读消息</a></li>
+                        <li><a href="/logout/">注销</a></li>
+                        {% else %}
+                        <a href="/login/">
+                        登录/注册
+    					</a>
+                        {% endif %}
+    				</li>
+    			</ul>
+            </div>
+    </nav>
+<br>
+<div class="container" style="padding-top: 100px">
+{% block detial %}{% endblock %}
+</div>
+</body>
+</html>

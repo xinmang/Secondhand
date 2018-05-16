@@ -1,0 +1,19 @@
+{% extends "market/base.html" %}
+{% block title %}{{ profile.Nick }}的个人信息{% endblock %}
+{% block detial %}
+
+<img src="{{ profile.Avatar }}" class="center-block">
+<h4 class="text-center">{{ profile.Nick }}</h4>
+
+<h3>发布的商品</h3>
+{% for i in goods %}
+                    <a href="/goods/{{ i.id }}">{{ i.Title }}
+                    {% if i.First_pic %}
+                    <img src="{{ i.First_pic.ImgSma }}">
+                    {% else %}
+                    <img src = "/static/market/images/no_image.jpg">
+                    {% endif %}
+</a>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "market/base.html" %}
+{% block title %}发布物品{% endblock %}
+{% block detial %}
+
+                <h3>{% block h1 %}发布物品{% endblock %}</h3>
+
+
+
+                <form method="POST" enctype="multipart/form-data">
+
+                        <label for="inputEmail3">分类：</label>
+
+
+                            {{ form.Category }}
+                            <p>{{ form.Category.errors.as_text() }}</p>
+
+
+                        <label for="inputCount3">标题：</label>
+
+
+
+                            {{ form.Title }}
+                            <p class="help-block">{{ form.Title.errors.as_text() }}</p>
+
+
+
+
+
+
+                        <label for="introduction">描述：</label>
+
+
+                            {{ form.Details }}
+                            <p>{{ form.Details.errors.as_text() }}</p>
+
+                        </div>
+                       
+
+                    </div>
+<div class="container">
+                {% block delpicture %}
+
+
+                                <input name="image" type="file" multiple="multiple"/>
+
+
+
+                    {% endblock %}
+<hr>
+
+                            <input type="submit" name="submit" value="提交" />
+
+
+
+                </form>
+</div>
+    {% block addend %}{% endblock %}
+{% endblock %}

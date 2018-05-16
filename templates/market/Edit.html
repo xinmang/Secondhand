@@ -1,0 +1,24 @@
+{% extends "market/PushGoods.html" %}
+{% block title %}编辑商品{% endblock %}
+{% block h1 %}编辑基本信息{% endblock %}
+<div class="container">
+{% block delpicture %}{% endblock %}
+</div>
+{% block addend %}
+<div class="container">
+{% if image %}
+                <h3 class="king-block-title">图片管理</h3>
+
+{% for i in image %}
+    <img src="{{ i.ImgSma }}"><a href="/del/pic/?goods_id={{ id }}&image_id={{ i.id }}" onClick="return confirm('确定删除?');">删除</a>
+{% endfor %}
+{% endif %}
+                <h3>添加新的图片</h3>
+               <form method="POST" action="/add/pic/" enctype="multipart/form-data">
+                   
+                                <input type="hidden" value="{{ id }}" name="goods_id"> {# id为商品id #}
+                                <input name="image" type="file" multiple="multiple"/>
+                            <input type="submit" name="submit" value="提交" />
+                </form>
+            </div>
+{% endblock %}

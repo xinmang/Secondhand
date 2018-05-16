@@ -1,0 +1,30 @@
+{% extends "market/base.html" %}
+{% block title %}我的信息{% endblock %}
+{% block detial %}
+
+
+    <img src="{{ profile.Avatar }}" class="center-block">
+    <h4 class="text-center">{{ profile.Nick }}</h4>
+<div class="text-center"><a href="/me/edit/">修改个人信息
+</a></div>
+<h3>我发布的物品</h3>
+
+{% for i in goods %}
+<div class="col-md-2 col-md-offset-1" style="background-color: #e3e4e5;">
+                    <a href="/goods/{{ i.id }}"><h3>{{ i.Title }}</h3>
+                    {% if i.First_pic %}
+                    <img src="{{ i.First_pic.ImgSma }}">
+                    {% else %}
+                    <img src = "/static/market/images/no_image.jpg" width="200px" height="200px">
+                    {% endif %}
+                <a href="/edit/{{ i.id }}">
+                    <h4>编辑</h4>
+                </a>
+                <a href="/del/good/{{ i.id }}" onClick="return confirm('确定删除?');">
+                    <h4>删除</h4>
+                </a>
+					</a>
+                </div>
+{% endfor %}
+
+{% endblock %}

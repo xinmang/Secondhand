@@ -1,0 +1,20 @@
+{% extends "market/base.html" %}
+{% block title %}所有商品{% endblock %}
+{% block detial %}
+
+
+{% for i in goods %}
+<div class="col-md-2 col-md-offset-1" style="background-color: #e3e4e5;">
+<h3><a href="/goods/{{ i.id }}">{{ i.Title }}</h3>
+<br>
+                    {% if i.First_pic %}
+                    <img src="{{ i.First_pic.ImgSma }}">
+
+                    {% else %}
+                    <img src = "/static/market/images/no_image.jpg" width="200px" heght="200px">
+                    {% endif %}
+</a>
+</div>
+{% endfor %}
+
+{% endblock %}

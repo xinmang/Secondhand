@@ -1,0 +1,68 @@
+{% extends "market/base.html" %}
+{% block title %}{{ goods.Title }}的信息{% endblock %}
+
+{% block detial %}
+<h3>主要信息</h3>
+<label for="inputCount3">标题：</label>
+<label>{{ goods.Title }}</label><br>
+<label for="inputCount3">发布时间:</label>
+<label>{{ goods.Ctime }}</label><br>
+<label for="inputCount3">分类:</label>
+<label>{{ goods.Category }}</label><br>
+<label for="inputCount3">浏览量:</label>
+<label>{{ goods.PV }}</label><br>
+                <h3>图片展柜</h3>
+                {% if image %}
+                {% for i in image %}
+                <a  href="{{  i.ImgBig }}">
+                    <img src="{{ i.ImgSma }}" alt="image">
+                </a>
+                {% endfor %}
+                {% else %}
+                <img src = "/static/market/images/no_image.jpg">
+        {% endif %}
+        <br>
+<label for="inputCout3">描述:</label>
+<label>{{ goods.Details }}</label><br>
+<label for="inputCount3">发布者:</label>
+<a href="/user/{{ goods.Owner.id }}">
+<label><img src="{{ profile.Avatar }}" class="avatar">{{ profile.Nick }}</label>
+</a>
+        {% if words %}
+ 
+                <h3>评论区</h3>
+
+            {% for i in words %}
+            <div id="div-{{ i.id }}">
+            {{ loop.index }}楼：
+            <img src="{{ i.From.Avatar }}" class="avatar">
+            <a href="/user/{{ i.From.User.id }}">{{ i.From.Nick }}</a>
+            :
+            {% if i.To %}
+            回复：{{ i.To.From.Nick }}:"{{ i.To.Words }}"
+            {% endif %}
+            <a title="回复" onclick="reply({{ i.id }});"></a>
+            &nbsp;&nbsp;&nbsp;
+            {% if i.From.User.id == uid %}
+            <a href="/del/word/?good_id={{ goods.id }}&word_id={{ i.id }}" onClick="return confirm('确定删除?');">
+                删除
+            </a>
+            {% endif %}
+            <br>
+            <h4>{{ i.Words }}</h4>
+            </div>
+            {% endfor %}
+        {% endif %}
+
+                <h3>评论</h3>
+
+
+                <form method="POST" action="/goods/reply/">
+                    {{ form }}
+                    {{ zzz|default('') }}
+                    <input type="hidden" name="goods_id" value="{{ goods.id }}">
+                    <hr>
+                    <input type="submit" name="submit" value="提交" />
+
+                </form>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "market/base.html" %}
+{% block title %}修改个人信息{% endblock %}
+{% block detial %}
+<img src="{{ profile.Avatar }}" />
+<h3>修改个人信息</h3>
+<form method="POST" enctype="multipart/form-data">
+<label for="inputCount3">修改昵称：</label>
+<div>
+{{ form.Nick }}
+<p>{{ form.Nick.errors.as_text() }}</p>
+</div>
+
+<label for="inputCount3">更换头像：</label>
+<div id="kendo_upload_demo1">
+<input name="Avatar" type="file" />
+</div><hr>
+<input type="submit" name="submit" value="提交" />
+</form>
+<script>
+$(document).ready(function() {
+    $("#kendo_upload_demo1 .file_input").kendoUpload();
+});
+</script>
+{% endblock %}

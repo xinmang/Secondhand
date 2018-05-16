@@ -1,0 +1,22 @@
+{% extends "market/base.html" %}
+{% block title %}消息提醒{% endblock %}
+{% block detial %}
+
+                <h3>未读消息 <a href="/log/manager/?method=read_new" onClick="return confirm('确定?');">全部标为已读</a></h3>
+{% for i in Newlog %}
+    <a href="/log/read/?id={{ i.id }}">
+    {{ i.From.Nick }}在{{ i.Owner.Title }}中给你评论了：{{ i.Mess.Words }}
+    </a>-------------------
+    <a href="/log/manager/?method=del_each&id={{ i.id }}" onClick="return confirm('确定?');">删除</a><br>
+{% endfor %}
+                <h3>已读消息 <a href="/log/manager/?method=del_old" onClick="return confirm('确定?');">删除已读消息</a></h3>
+
+{% for i in Oldlog %}
+    <a href="/log/read/?id={{ i.id }}">
+    {{ i.From.Nick }}在{{ i.Owner.Title }}中给你评论了：{{ i.Mess.Words }}
+    </a>----------------------
+    <a href="/log/manager/?method=del_each&id={{ i.id }}" onClick="return confirm('确定?');">删除</a><br>
+
+{% endfor %}
+                <h3><a href="/log/manager/?method=del_all" onClick="return confirm('确定?');">清空所有消息</a></h3>
+{% endblock %}

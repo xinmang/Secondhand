@@ -1,0 +1,30 @@
+{% extends "market/base.html" %}
+{% block title %}注册{% endblock %}
+{% block detial %}
+            <form class="login active" method="POST">
+
+                <h3>欢迎注册</h3><a href="/login/" rel="login" >点击这里登录</a>
+                <div>
+                    <label>用户名:</label>
+                    {{ form.username }}
+                    <label>{{ form.username.errors.as_text() }}</label>
+                </div>
+                <div>
+                    <label>密码:</label>
+                    {{ form.passwd }}
+                    <label>{{ form.passwd.errors.as_text() }}</label>
+                </div>
+                <div>
+                    <label>重复密码:</label>
+                    {{ form.repasswd }}
+                    <label>{{ form.repasswd.errors.as_text() }}</label>
+                </div>
+                <div>
+                    <input type="submit" value="注册">
+                    
+                </div>
+            </form>
+{% endblock %}
+
+
+

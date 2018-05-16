@@ -1,0 +1,28 @@
+{% extends "market/base.html" %}
+{% block title %}登录{% endblock %}
+{% block detial %}
+
+            <form class="login active" method="POST">
+
+                <h3>登录页面</h3><a href="/register/" rel="register" class="linkform">点这里去注册</a>
+                <div>
+                    <label>用户名:</label>
+                    <input type="text" name="username" />
+
+                </div>
+                <div>
+                    <label>密码: </label>
+                    <input type="password" name="password"/>
+                    <label>{% if error %}{{ error }}{% endif %}</label>
+                </div>
+                <div>
+                    <input type="submit" value="登录">
+
+                    <div></div>
+                </div>
+            </form>
+
+
+
+
+{% endblock %}
